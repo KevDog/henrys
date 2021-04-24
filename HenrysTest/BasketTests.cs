@@ -14,9 +14,17 @@ namespace HenrysTests
         }
 
         [Test]
-        public void CanCreateABasket()
+        public void ABasketWithOneAppleHasTheCorrectPrice()
         {
-            Assert.NotNull(basket);
+            basket.AddApples();
+            Assert.AreEqual(0.10,basket.Cost);
+        }
+
+        [Test]
+        public void ABasketWithOneMilkHasCorrectPrice()
+        {
+            basket.AddMilk();
+            Assert.AreEqual(1.30, basket.Cost);
         }
 
         [Test]
@@ -25,6 +33,15 @@ namespace HenrysTests
             basket.AddSoup();
             Assert.AreEqual(0.65,basket.Cost);
         }
+
+        [Test]
+        public void ABasketWithOneLoafOfBreadHasCorrectPrice()
+        {
+            basket.AddBread();
+            Assert.AreEqual(0.8,basket.Cost);
+        }
+
+
         [Test]
         public void CanAddATinOfSoupToABasket()
         {
@@ -51,6 +68,12 @@ namespace HenrysTests
         {
             basket.AddApples();
             Assert.AreEqual(1,basket.Apples);
+        }
+
+        [Test]
+        public void CanCreateABasket()
+        {
+            Assert.NotNull(basket);
         }
     }
 }
