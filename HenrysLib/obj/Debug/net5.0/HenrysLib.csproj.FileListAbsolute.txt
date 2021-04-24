@@ -2,7 +2,6 @@ C:\Users\kcste\source\repos\henrys\HenrysLib\bin\Debug\net5.0\HenrysLib.deps.jso
 C:\Users\kcste\source\repos\henrys\HenrysLib\bin\Debug\net5.0\HenrysLib.dll
 C:\Users\kcste\source\repos\henrys\HenrysLib\bin\Debug\net5.0\ref\HenrysLib.dll
 C:\Users\kcste\source\repos\henrys\HenrysLib\bin\Debug\net5.0\HenrysLib.pdb
-C:\Users\kcste\source\repos\henrys\HenrysLib\obj\Debug\net5.0\HenrysLib.csprojAssemblyReference.cache
 C:\Users\kcste\source\repos\henrys\HenrysLib\obj\Debug\net5.0\HenrysLib.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\kcste\source\repos\henrys\HenrysLib\obj\Debug\net5.0\HenrysLib.AssemblyInfoInputs.cache
 C:\Users\kcste\source\repos\henrys\HenrysLib\obj\Debug\net5.0\HenrysLib.AssemblyInfo.cs
@@ -10,3 +9,4 @@ C:\Users\kcste\source\repos\henrys\HenrysLib\obj\Debug\net5.0\HenrysLib.csproj.C
 C:\Users\kcste\source\repos\henrys\HenrysLib\obj\Debug\net5.0\HenrysLib.dll
 C:\Users\kcste\source\repos\henrys\HenrysLib\obj\Debug\net5.0\ref\HenrysLib.dll
 C:\Users\kcste\source\repos\henrys\HenrysLib\obj\Debug\net5.0\HenrysLib.pdb
+C:\Users\kcste\source\repos\henrys\HenrysLib\obj\Debug\net5.0\HenrysLib.csprojAssemblyReference.cache
