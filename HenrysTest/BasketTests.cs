@@ -1,6 +1,7 @@
+using HenrysLib;
 using NUnit.Framework;
 
-namespace HenrysTest
+namespace HenrysTests
 {
     public class Tests
     {
@@ -10,9 +11,10 @@ namespace HenrysTest
         }
 
         [Test]
-        public void Test1()
+        public void CanCreateABasket()
         {
-            Assert.Pass();
+            var basket = new Basket();
+            Assert.NotNull(basket);
         }
     }
 }

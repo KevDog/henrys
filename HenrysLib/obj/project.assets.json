@@ -8,24 +8,34 @@
     "net5.0": []
   },
   "packageFolders": {
-    "/Users/kstevens/.nuget/packages/": {}
+    "C:\\Users\\kcste\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/kstevens/code/henrys/HenrysLib/HenrysLib.csproj",
+      "projectUniqueName": "C:\\Users\\kcste\\source\\repos\\henrys\\HenrysLib\\HenrysLib.csproj",
       "projectName": "HenrysLib",
-      "projectPath": "/Users/kstevens/code/henrys/HenrysLib/HenrysLib.csproj",
-      "packagesPath": "/Users/kstevens/.nuget/packages/",
-      "outputPath": "/Users/kstevens/code/henrys/HenrysLib/obj/",
+      "projectPath": "C:\\Users\\kcste\\source\\repos\\henrys\\HenrysLib\\HenrysLib.csproj",
+      "packagesPath": "C:\\Users\\kcste\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\kcste\\source\\repos\\henrys\\HenrysLib\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+      ],
       "configFilePaths": [
-        "/Users/kstevens/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\kcste\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -58,7 +68,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.101/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }
