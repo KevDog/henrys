@@ -7,6 +7,7 @@ namespace HenrysTests
     public class Tests
     {
         private Basket basket;
+
         [SetUp]
         public void Setup()
         {
@@ -14,66 +15,41 @@ namespace HenrysTests
         }
 
         [Test]
-        public void ABasketWithOneAppleHasTheCorrectPrice()
+        public void AddingApplesToBasketProducesCorrectPrice()
         {
-            basket.AddApples();
-            Assert.AreEqual(0.10,basket.Cost);
+            basket.AddApples(2);
+            Assert.AreEqual(0.20, basket.Cost);
         }
 
         [Test]
         public void ABasketWithOneMilkHasCorrectPrice()
         {
-            basket.AddMilk();
-            Assert.AreEqual(1.30, basket.Cost);
+            basket.AddMilk(2);
+            Assert.AreEqual(2.60, basket.Cost);
         }
 
         [Test]
         public void ABasketWithOneCanOfSoupHasCorrectPrice()
         {
-            basket.AddSoup();
-            Assert.AreEqual(0.65,basket.Cost);
+            basket.AddSoup(2);
+            Assert.AreEqual(1.30, basket.Cost);
         }
 
         [Test]
         public void ABasketWithOneLoafOfBreadHasCorrectPrice()
         {
-            basket.AddBread();
-            Assert.AreEqual(0.8,basket.Cost);
-        }
-
-
-        [Test]
-        public void CanAddATinOfSoupToABasket()
-        {
-            basket.AddSoup();
-            Assert.AreEqual(1,basket.Soup);
+            basket.AddBread(2);
+            Assert.AreEqual(1.60, basket.Cost);
         }
 
         [Test]
-        public void CanAddALoafOfBreadToABasket()
+        public void ABasketWithOneOfEachItemHasCorrectPrice()
         {
-            basket.AddBread();
-            Assert.AreEqual(1,basket.Bread);
-        }
-
-        [Test]
-        public void CanAddMilkToABasket()
-        {
-            basket.AddMilk();
-            Assert.AreEqual(1,basket.Milk);
-        }
-
-        [Test]
-        public void CanAddApplesToABasket()
-        {
-            basket.AddApples();
-            Assert.AreEqual(1,basket.Apples);
-        }
-
-        [Test]
-        public void CanCreateABasket()
-        {
-            Assert.NotNull(basket);
+            basket.AddBread(1);
+            basket.AddApples(1);
+            basket.AddMilk(1);
+            basket.AddSoup(1);
+            Assert.AreEqual(2.85, basket.Cost);
         }
     }
 }
