@@ -20,6 +20,12 @@ namespace HenrysTests
         }
 
         [Test]
+        public void ABasketWithOneCanOfSoupHasCorrectPrice()
+        {
+            basket.AddSoup();
+            Assert.AreEqual(0.65,basket.Cost);
+        }
+        [Test]
         public void CanAddATinOfSoupToABasket()
         {
             basket.AddSoup();

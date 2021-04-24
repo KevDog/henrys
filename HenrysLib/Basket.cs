@@ -14,7 +14,8 @@ namespace HenrysLib
         public int Bread  => _bread;
         public int Milk   => _milk;
         public int Apples => _apples;
-        
+        public double Cost => _soup * 0.65;
+
         public void AddSoup()
         {
             _soup = 1;
