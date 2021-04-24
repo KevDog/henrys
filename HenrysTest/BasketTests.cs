@@ -1,3 +1,4 @@
+using System;
 using System.Runtime.InteropServices.ComTypes;
 using HenrysLib;
 using NUnit.Framework;
@@ -12,6 +13,20 @@ namespace HenrysTests
         public void Setup()
         {
             basket = new Basket();
+        }
+
+        [Test]
+        public void BasketSaleDateIsTodayByDefault()
+        {
+            basket = new Basket();
+            Assert.AreEqual(DateTime.Today,basket.DateOfSale);
+        }
+
+        [Test]
+        public void CanSetSaleDateAtCreation()
+        {
+            basket = new Basket(new DateTime(2021,1,1));
+            Assert.AreEqual(new DateTime(2021, 1, 1), basket.DateOfSale);
         }
 
         [Test]

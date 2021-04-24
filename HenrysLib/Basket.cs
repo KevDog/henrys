@@ -5,34 +5,44 @@ namespace HenrysLib
 {
     public class Basket
     {
-        private int _soup;
-        private int _bread;
-        private int _milk;
-        private int _apples;
+        public Basket()
+        {
+            DateOfSale = DateTime.Today;
+        }
 
-        public int Soup   => _soup;
-        public int Bread  => _bread;
-        public int Milk   => _milk;
-        public int Apples => _apples;
-        public double Cost => _soup * 0.65 + _bread * 0.8 + _milk * 1.30 + _apples * 0.10;
+        public Basket(DateTime saleDate)
+        {
+            DateOfSale = saleDate;
+        }
+
+        public int Soup { get; private set; }
+
+        public int Bread { get; private set; }
+
+        public int Milk { get; private set; }
+
+        public int Apples { get; private set; }
+
+        public double Cost => Soup * 0.65 + Bread * 0.8 + Milk * 1.30 + Apples * 0.10;
+        public DateTime DateOfSale { get; set; }
 
         public void AddSoup(int count)
         {
-            _soup = _soup + count;
+            Soup = Soup + count;
         }
         public void AddBread(int count)
         {
-            _bread = _bread + count;
+            Bread = Bread + count;
         }
 
         public void AddMilk(int count)
         {
-            _milk = _milk + count;
+            Milk = Milk + count;
         }
 
         public void AddApples(int count)
         {
-            _apples = _apples + count;
+            Apples = Apples + count;
         }
     }
 }
