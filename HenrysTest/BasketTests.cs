@@ -22,6 +22,32 @@ namespace HenrysTests
             Assert.AreEqual(0,_basket.Apples);
         }
 
+
+        [Test]
+        public void CannotTakeOutMoreMilkThanWerePutIn()
+        {
+            _basket.AddMilk(10);
+            _basket.AddMilk(-11);
+            Assert.AreEqual(0, _basket.Milk);
+        }
+
+
+        [Test]
+        public void CannotTakeOutMoreSoupThanWerePutIn()
+        {
+            _basket.AddSoup(10);
+            _basket.AddSoup(-11);
+            Assert.AreEqual(0, _basket.Soup);
+        }
+
+        [Test]
+        public void CannotTakeOutMoreBreadThanWerePutIn()
+        {
+            _basket.AddBread(10);
+            _basket.AddBread(-11);
+            Assert.AreEqual(0, _basket.Bread);
+        }
+
         [Test]
         public void BasketSaleDateIsTodayByDefault()
         {

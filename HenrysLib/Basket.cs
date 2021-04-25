@@ -88,15 +88,27 @@ namespace HenrysLib
         public void AddSoup(int count)
         {
             Soup += count;
+            if (Soup < 0)
+            {
+                Soup = 0;
+            }
         }
         public void AddBread(int count)
         {
             Bread += count;
+            if (Bread < 0)
+            {
+                Bread = 0;
+            }
         }
 
         public void AddMilk(int count)
         {
             Milk += count;
+            if (Milk < 0)
+            {
+                Milk = 0;
+            }
         }
 
         public void AddApples(int count)
