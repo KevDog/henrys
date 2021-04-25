@@ -64,11 +64,13 @@ namespace HenrysTests
             Assert.AreEqual(1.30M, basket.Cost);
         }
 
-        [TestCaseSource(nameof(_discountCases))]
-        public void CheckDateRange(DateTime date)
+
+        [TestCaseSource(nameof(_allCases))]
+        public void BuyingBreadGetsNoDiscount(DateTime date)
         {
             basket.DateOfSale = date;
-            Assert.True(basket.DateRangeApplies());
+            basket.AddBread(2);
+            Assert.AreEqual(1.60M, basket.Cost);
         }
     }
 

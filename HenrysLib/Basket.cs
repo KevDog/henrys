@@ -5,6 +5,12 @@ namespace HenrysLib
 {
     public class Basket
     {
+        private decimal _soupPrice = 0.65M;
+        private decimal _breadPrice = 0.8M;
+        private decimal _milkPrice = 1.30M;
+        private decimal _halfLoafOfBread = -.40M;
+        private decimal _applePrice = 0.10M;
+
         public Basket()
         {
             DateOfSale = DateTime.Today;
@@ -23,17 +29,17 @@ namespace HenrysLib
 
         public int Apples { get; private set; }
 
-        public decimal Cost => Decimal.Multiply(Soup, 0.65M) + 
-                               Decimal.Multiply(Bread, 0.8M) + 
-                               Decimal.Multiply(Milk, 1.30M) + 
-                               Decimal.Multiply(Apples, 0.10M) + 
+        public decimal Cost => Decimal.Multiply(Soup, _soupPrice) + 
+                               Decimal.Multiply(Bread, _breadPrice) + 
+                               Decimal.Multiply(Milk, _milkPrice) + 
+                               Decimal.Multiply(Apples, _applePrice) + 
                                ApplySoupDiscount();
 
         private decimal ApplySoupDiscount()
         {
             if (SoupDiscountApplies())
             {
-                return -.40M;
+                return _halfLoafOfBread;
             }
             else
             {
@@ -43,10 +49,15 @@ namespace HenrysLib
 
         private bool SoupDiscountApplies()
         {
-            return DateRangeApplies() && (Soup >= 2 && Bread >= 1);
+            return DateRangeApplies() && QuantitiesApply();
         }
 
-        public bool DateRangeApplies()
+        private bool QuantitiesApply()
+        {
+            return Soup >= 2 && Bread >= 1;
+        }
+
+        private bool DateRangeApplies()
         {
             return DateOfSale.Date > DateTime.Today.AddDays(-2) && DateOfSale.Date < DateTime.Today.AddDays(8);
         }
