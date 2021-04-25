@@ -1,11 +1,10 @@
 using System;
-using System.Runtime.InteropServices.ComTypes;
 using HenrysLib;
 using NUnit.Framework;
 
 namespace HenrysTests
 {
-    public class Tests
+    public class BasketTests
     {
         private Basket basket;
 
