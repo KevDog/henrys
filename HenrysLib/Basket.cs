@@ -5,11 +5,15 @@ namespace HenrysLib
 {
     public class Basket
     {
-        private decimal _soupPrice = 0.65M;
-        private decimal _breadPrice = 0.8M;
-        private decimal _milkPrice = 1.30M;
-        private decimal _halfLoafOfBread = -.40M;
-        private decimal _applePrice = 0.10M;
+        private const decimal SoupPrice = 0.65M;
+        private const decimal BreadPrice = 0.8M;
+        private const decimal MilkPrice = 1.30M;
+        private const decimal HalfLoafOfBread = -.40M;
+        private const decimal ApplePrice = 0.10M;
+        private static readonly DateTime _appleDiscountStart = DateTime.Today.AddDays(3);
+        private static readonly DateTime NextMonth = System.Globalization.DateTimeFormatInfo.CurrentInfo.Calendar.AddMonths(DateTime.Now, 1);
+        private static readonly int DaysInNextMonth = System.Globalization.DateTimeFormatInfo.CurrentInfo.Calendar.GetDaysInMonth(NextMonth.Year, NextMonth.Month);
+        private static readonly DateTime AppleDiscountEnd = new DateTime(NextMonth.Year, NextMonth.Month, DaysInNextMonth);
 
         public Basket()
         {
@@ -29,35 +33,38 @@ namespace HenrysLib
 
         public int Apples { get; private set; }
 
-        public decimal Cost => Decimal.Multiply(Soup, _soupPrice) + 
-                               Decimal.Multiply(Bread, _breadPrice) + 
-                               Decimal.Multiply(Milk, _milkPrice) + 
-                               Decimal.Multiply(Apples, _applePrice) + 
+        public decimal Cost => Decimal.Multiply(Soup, SoupPrice) + 
+                               Decimal.Multiply(Bread, BreadPrice) + 
+                               Decimal.Multiply(Milk, MilkPrice) + 
+                               Decimal.Multiply(Apples, ApplePrice) + 
                                ApplySoupDiscount();
 
         private decimal ApplySoupDiscount()
         {
             if (SoupDiscountApplies())
             {
-                return _halfLoafOfBread;
+                return HalfLoafOfBread;
             }
             else
             {
                 return 0.0M;
             }
         }
-
+        public bool AppleDateRangeApplies()
+        {
+            return DateOfSale.Date >= _appleDiscountStart && DateOfSale.Date <= AppleDiscountEnd;
+        }
         private bool SoupDiscountApplies()
         {
-            return DateRangeApplies() && QuantitiesApply();
+            return SoupDateRangeApplies() && SoupQuantitiesApply();
         }
 
-        private bool QuantitiesApply()
+        private bool SoupQuantitiesApply()
         {
             return Soup >= 2 && Bread >= 1;
         }
 
-        private bool DateRangeApplies()
+        private bool SoupDateRangeApplies()
         {
             return DateOfSale.Date > DateTime.Today.AddDays(-2) && DateOfSale.Date < DateTime.Today.AddDays(8);
         }
@@ -82,5 +89,7 @@ namespace HenrysLib
         {
             Apples = Apples + count;
         }
+
+       
     }
 }
