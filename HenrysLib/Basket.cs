@@ -33,11 +33,25 @@ namespace HenrysLib
 
         public int Apples { get; private set; }
 
-        public decimal Cost => Decimal.Multiply(Soup, SoupPrice) + 
-                               Decimal.Multiply(Bread, BreadPrice) + 
-                               Decimal.Multiply(Milk, MilkPrice) + 
-                               Decimal.Multiply(Apples, ApplePrice) + 
+        public decimal Cost => Decimal.Multiply(Soup, SoupPrice) +
+                               Decimal.Multiply(Bread, BreadPrice) +
+                               Decimal.Multiply(Milk, MilkPrice) +
+                               ApplyAppleDiscount() +
                                ApplySoupDiscount();
+
+        private decimal ApplyAppleDiscount()
+        {
+            if (AppleDateRangeApplies())
+            {
+                var discountedPrice = Decimal.Multiply(ApplePrice, 0.9M);
+                return Decimal.Multiply(Apples, discountedPrice);
+            }
+            else
+            {
+                return Decimal.Multiply(Apples, ApplePrice);
+                
+            }
+        }
 
         private decimal ApplySoupDiscount()
         {

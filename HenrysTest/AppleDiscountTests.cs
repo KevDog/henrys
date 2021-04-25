@@ -40,8 +40,11 @@ namespace HenrysTests
         {
             foreach (var date in EachDay(_threeDaysFromNow, _lastDayOfNextMonth))
             {
+                _basket = new Basket(date);
+                _basket.AddApples(10);
                 _basket.DateOfSale = date;
                 Assert.True(_basket.AppleDateRangeApplies());
+                Assert.AreEqual(0.9M,_basket.Cost);
             }
         }
 
@@ -49,7 +52,8 @@ namespace HenrysTests
         public void DateRangeForNonDiscountDatesReturnsFalse(DateTime date)
         {
             _basket.DateOfSale = date;
-            Assert.False(_basket.AppleDateRangeApplies());
+            _basket.AddApples(10);
+            Assert.AreEqual(1.0M, _basket.Cost);
         }
 
         private IEnumerable<DateTime> EachDay(DateTime from, DateTime thru)

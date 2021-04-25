@@ -20,6 +20,7 @@
     &lt;TestAncestor&gt;&#xD;
       &lt;TestId&gt;NUnit3x::592FDBE1-618B-40F2-9024-89924165C928::net5.0::HenrysTests.AppleDiscountTests.DateRangeForDiscountDatesReturnsTrue&lt;/TestId&gt;&#xD;
       &lt;TestId&gt;NUnit3x::592FDBE1-618B-40F2-9024-89924165C928::net5.0::HenrysTests.AppleDiscountTests.DateRangeForNonDiscountDatesReturnsFalse&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;NUnit3x::592FDBE1-618B-40F2-9024-89924165C928::net5.0::HenrysTests.AcceptanceTests&lt;/TestId&gt;&#xD;
     &lt;/TestAncestor&gt;&#xD;
   &lt;/Or&gt;&#xD;
 &lt;/SessionState&gt;</s:String>

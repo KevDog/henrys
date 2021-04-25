@@ -7,7 +7,7 @@ namespace HenrysTests
     public class AcceptanceTests
     {
         private Basket _basket;
-        private DateTime _fiveDaysFromNow = DateTime.Now.AddDays(5);
+        private readonly DateTime _fiveDaysFromNow = DateTime.Now.AddDays(5);
 
         [SetUp]
         public void Setup()
