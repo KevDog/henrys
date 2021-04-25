@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9DlsqR84Ky5+nDNZvltqhv/DZQXoEybgPir5wrUFEnhGfMFZzGTYbYq/J0Zm7lVUx3LiVnZ6/kn7h6xBEMU65g==",
+  "dgSpecHash": "te9DMYZu6toBWbUwhAEAwTA+tGg8SKgcjKGYEZSQO2qN3VUMv02oQF3F3aUoODEyvz3JJzfLb0hY5dzHVSqKxw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\kcste\\Source\\Repos\\henrys\\HenrysTest\\HenrysTests.csproj",
+  "projectFilePath": "C:\\Users\\kcste\\source\\repos\\henrys\\HenrysTest\\HenrysTests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\kcste\\.nuget\\packages\\microsoft.codecoverage\\16.5.0\\microsoft.codecoverage.16.5.0.nupkg.sha512",
     "C:\\Users\\kcste\\.nuget\\packages\\microsoft.csharp\\4.0.1\\microsoft.csharp.4.0.1.nupkg.sha512",

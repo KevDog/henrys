@@ -14,40 +14,61 @@ namespace HenrysTests
             basket = new Basket();
         }
 
-        [Test]
-        public void BuyingTwoTinsOfSoupAndNoBreadGetsNoDiscount()
+        private static DateTime[] _discountCases =
         {
-                                
+            DateTime.Today,
+            DateTime.Today.AddDays(-1),
+            DateTime.Today.AddDays(7),
+        };
+
+        private static DateTime[] _nonDiscountCases =
+        {
+            DateTime.Today.AddDays(-2),
+            DateTime.Today.AddDays(8)
+
+        };
+
+        private static DateTime[] _allCases =
+        {
+            DateTime.Today.AddDays(-2),
+            DateTime.Today.AddDays(8),
+            DateTime.Today,
+            DateTime.Today.AddDays(-1),
+            DateTime.Today.AddDays(7),
+        };
+
+        [TestCaseSource(nameof(_discountCases))]
+        public void SoupDiscountAppliesOnAppropriateDays(DateTime date)
+        {
+            basket.DateOfSale = date;
+            basket.AddSoup(2);
+            basket.AddBread(1);
+            Assert.AreEqual(1.70M, basket.Cost);
         }
 
-        [Test]
-        public void BuyingTwoTinsOfSoupAndALoafOfBreadTwoDaysAgoGetsNoDiscount()
+
+        [TestCaseSource(nameof(_nonDiscountCases))]
+        public void SoupDiscountNotAppliedOnAppropriateDays(DateTime date)
         {
-            
+            basket.DateOfSale = date;
+            basket.AddSoup(2);
+            basket.AddBread(1);
+            Assert.AreEqual(2.10M, basket.Cost);
         }
 
-        [Test]
-        public void BuyingTwoTinsOfSoupAndALoafOfBreadYesterdayGetsADiscount()
+        [TestCaseSource(nameof(_allCases))]
+        public void BuyingTwoTinsOfSoupAndNoBreadGetsNoDiscount(DateTime date)
         {
-                
+            basket.DateOfSale = date;
+            basket.AddSoup(2);
+            Assert.AreEqual(1.30M, basket.Cost);
         }
 
-        [Test]
-        public void BuyingTwoTinsOfSoupAndALoafOfBreadTodayGetsADiscount()
+        [TestCaseSource(nameof(_discountCases))]
+        public void CheckDateRange(DateTime date)
         {
-            
-        }
-
-        [Test]
-        public void BuyingTwoTinsOfSoupAndALoafBreadInSevenDaysGetsADiscount()
-        {
-            
-        }
-
-        [Test]
-        public void BuyingTwoTinsOfSoupAndALoafOfBreadInEightDaysGetsNoDiscount()
-        {
-            
+            basket.DateOfSale = date;
+            Assert.True(basket.DateRangeApplies());
         }
     }
 

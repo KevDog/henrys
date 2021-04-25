@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kcste\\Source\\Repos\\henrys\\HenrysLib\\HenrysLib.csproj": {}
+    "C:\\Users\\kcste\\source\\repos\\henrys\\HenrysLib\\HenrysLib.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kcste\\Source\\Repos\\henrys\\HenrysLib\\HenrysLib.csproj": {
+    "C:\\Users\\kcste\\source\\repos\\henrys\\HenrysLib\\HenrysLib.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kcste\\Source\\Repos\\henrys\\HenrysLib\\HenrysLib.csproj",
+        "projectUniqueName": "C:\\Users\\kcste\\source\\repos\\henrys\\HenrysLib\\HenrysLib.csproj",
         "projectName": "HenrysLib",
-        "projectPath": "C:\\Users\\kcste\\Source\\Repos\\henrys\\HenrysLib\\HenrysLib.csproj",
+        "projectPath": "C:\\Users\\kcste\\source\\repos\\henrys\\HenrysLib\\HenrysLib.csproj",
         "packagesPath": "C:\\Users\\kcste\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kcste\\Source\\Repos\\henrys\\HenrysLib\\obj\\",
+        "outputPath": "C:\\Users\\kcste\\source\\repos\\henrys\\HenrysLib\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

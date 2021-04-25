@@ -23,7 +23,34 @@ namespace HenrysLib
 
         public int Apples { get; private set; }
 
-        public double Cost => Soup * 0.65 + Bread * 0.8 + Milk * 1.30 + Apples * 0.10;
+        public decimal Cost => Decimal.Multiply(Soup, 0.65M) + 
+                               Decimal.Multiply(Bread, 0.8M) + 
+                               Decimal.Multiply(Milk, 1.30M) + 
+                               Decimal.Multiply(Apples, 0.10M) + 
+                               ApplySoupDiscount();
+
+        private decimal ApplySoupDiscount()
+        {
+            if (SoupDiscountApplies())
+            {
+                return -.40M;
+            }
+            else
+            {
+                return 0.0M;
+            }
+        }
+
+        private bool SoupDiscountApplies()
+        {
+            return DateRangeApplies() && (Soup >= 2 && Bread >= 1);
+        }
+
+        public bool DateRangeApplies()
+        {
+            return DateOfSale.Date > DateTime.Today.AddDays(-2) && DateOfSale.Date < DateTime.Today.AddDays(8);
+        }
+
         public DateTime DateOfSale { get; set; }
 
         public void AddSoup(int count)
