@@ -55,3 +55,20 @@ All outputs must print to the command line.
   - Expected total cost = 1.84;
 - Price a basket containing: 3 apples, 2 tins of soup and a loaf of bread, bought in 5 days time,
   - Expected total cost = 1.97.
+  
+ ### Commands
+  cost       Display the current cost of the basket
+
+  apples     Display Current Amount of Apples or Add Apples to the basket
+
+  bread      Display Current Amount of Bread or Add Bread to the basket
+
+  soup       Display Current Amount of Soup or Add Soup to the basket
+
+  bread      Display Current Amount of Bread or Add Bread to the basket
+
+  date       Display or set the basket sale date
+
+  help       Display more information on a specific command.
+
+  version    Display version information.

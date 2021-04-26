@@ -11,7 +11,7 @@ namespace Henrys
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Control-C to quit");
+            Console.WriteLine("'help' to list commands, Control-C to quit");
             while (true)
             {
                 Console.Write("Enter Command: ");
