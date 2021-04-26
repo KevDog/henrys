@@ -49,7 +49,6 @@ namespace HenrysLib
             else
             {
                 return Decimal.Multiply(Apples, ApplePrice);
-                
             }
         }
 
@@ -59,10 +58,7 @@ namespace HenrysLib
             {
                 return HalfLoafOfBread;
             }
-            else
-            {
-                return 0.0M;
-            }
+            return 0.0M;
         }
         public bool AppleDateRangeApplies()
         {
@@ -93,6 +89,7 @@ namespace HenrysLib
                 Soup = 0;
             }
         }
+
         public void AddBread(int count)
         {
             Bread += count;
@@ -119,7 +116,5 @@ namespace HenrysLib
                 Apples = 0;
             }
         }
-
-       
     }
 }

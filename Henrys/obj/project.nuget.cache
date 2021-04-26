@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "JOnhqEtW6KjIa2t3rhCT2lLsFv3RlT5Uop7K96QldfduV/3atbN7m4VLvCEgBOMCjpv1HSNwa2UQfSsEMU4Rag==",
+  "dgSpecHash": "Vp9UEYUPAFhtpWTSwdBSmqf4eECX3D+VpUoE3Y17e5NxFWYqtQeWBI7+Epp8S2Gv6RYPuuRTLlgBjOeasHlNdg==",
   "success": true,
   "projectFilePath": "C:\\Users\\kcste\\source\\repos\\henrys\\Henrys\\Henrys.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\kcste\\.nuget\\packages\\commandlineparser\\2.8.0\\commandlineparser.2.8.0.nupkg.sha512"
+  ],
   "logs": []
 }

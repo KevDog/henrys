@@ -17,3 +17,4 @@ C:\Users\kcste\source\repos\henrys\Henrys\obj\Debug\net5.0\ref\Henrys.dll
 C:\Users\kcste\source\repos\henrys\Henrys\obj\Debug\net5.0\Henrys.pdb
 C:\Users\kcste\source\repos\henrys\Henrys\obj\Debug\net5.0\Henrys.genruntimeconfig.cache
 C:\Users\kcste\source\repos\henrys\Henrys\obj\Debug\net5.0\Henrys.csprojAssemblyReference.cache
+C:\Users\kcste\source\repos\henrys\Henrys\bin\Debug\net5.0\CommandLine.dll
