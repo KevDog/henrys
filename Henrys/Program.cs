@@ -5,42 +5,40 @@ using HenrysLib;
 
 namespace Henrys
 {
-    class Program
+    internal class Program
     {
         private static Basket _basket = new Basket();
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Console.WriteLine("'help' to list commands, Control-C to quit");
             while (true)
             {
                 Console.Write("Enter Command: ");
                 args = Console.ReadLine()?.Split(" ");
-                //ParserResult<ICommand> parserResult =
-                Parser.Default.ParseArguments<CostCommand, ApplesCommand, BreadCommand, SoupCommand, BreadCommand, DateCommand>(args)
+                Parser.Default.ParseArguments<CostCommand, ApplesCommand, BreadCommand, SoupCommand, MilkCommand, DateCommand>(args)
                     .WithParsed<Program.ICommand>(t => t.Execute());
-
             }
         }
 
-        interface ICommand
+        private interface ICommand
         {
             void Execute();
         }
 
-            [Verb("date", HelpText = "Display or set the basket sale date")]
+        [Verb("date", HelpText = "Display or set the basket sale date")]
         public class DateCommand : ICommand
         {
             [Option('s',"date", HelpText = "Set the sale date of the basket")]
-            public String Date { get; set; }
+            public string Date { get; set; }
 
             [Option('c',"count", HelpText = "Add or subtract days from the sale date")]
-            public int? Count { get; set; }
+            public int Count { get; set; }
             public void Execute()
             {
-                if (Count != null)
+                if (Count != 0)
                 {
-                  _basket.DateOfSale = _basket.DateOfSale.AddDays((int) Count);
+                  _basket.DateOfSale = _basket.DateOfSale.AddDays(Count);
                 }
                 if (string.IsNullOrEmpty(Date))
                 {
@@ -60,93 +58,75 @@ namespace Henrys
                         Console.WriteLine("Invalid sale date");
                     }
                 }
-
             }
         }
 
         [Verb("cost", HelpText = "Display the current cost of the basket")]
-        public class CostCommand : ICommand
+        private class CostCommand : ICommand
         {
             public void Execute()
             {
-                
                 Console.WriteLine("Current Basket Cost: " + _basket.Cost);
             }
         }
 
         [Verb("apples", HelpText = "Display Current Amount of Apples or Add Apples to the basket")]
-        class ApplesCommand : ICommand
+        private class ApplesCommand : ICommand
         {
             [Option('c',"count", Required = false, HelpText = "How Many Apples to Add")]
             public int Count { get; set; }
             public void Execute()
             {
-                if (Count > 0)
+                if (Count != 0)
                 {
                     _basket.AddApples(Count);
-                    Console.WriteLine("Current Apple Count: " + _basket.Apples);
                 }
-                else
-                {
-                   Console.WriteLine("Current Apple Count: " + _basket.Apples);
-                }
+                Console.WriteLine("Current Apple Count: " + _basket.Apples);
             }
         }
 
         [Verb("bread", HelpText = "Display Current Amount of Bread or Add Bread to the basket")]
-        class BreadCommand : ICommand
+        private class BreadCommand : ICommand
         {
-            [Option('c', "count",Required = false, HelpText = "How Many Loaves of Bread to Add")]
+            [Option('c', "count", Required = false, HelpText = "How Many Loaves of Bread to Add")]
             public int Count { get; set; }
             public void Execute()
             {
-                if (Count > 0)
+                if (Count != 0)
                 {
                     _basket.AddBread(Count);
-                    Console.WriteLine("Current Bread Count: " + _basket.Bread);
                 }
-                else
-                {
-                    Console.WriteLine("Current Bread Count: " + _basket.Bread);
-                }
+                Console.WriteLine("Current Bread Count: " + _basket.Bread);
             }
         }
 
         [Verb("soup", HelpText = "Display Current Amount of Soup or Add Soup to the basket")]
-        class SoupCommand : ICommand
+        private class SoupCommand : ICommand
         {
             [Option('c', "count", Required = false, HelpText = "How Many Tins of Soup to Add")]
             public int Count { get; set; }
             public void Execute()
             {
-                if (Count > 0)
+                if (Count != 0)
                 {
                     _basket.AddSoup(Count);
-                    Console.WriteLine("Current Soup Count: " + _basket.Soup);
                 }
-                else
-                {
-                    Console.WriteLine("Current Soup Count: " + _basket.Soup);
-                }
+                Console.WriteLine("Current Soup Count: " + _basket.Soup);
             }
         }
 
-        [Verb("Milk", HelpText = "Display Current Amount of Milk or Add Milk to the basket")]
-        class MilkCommand : ICommand
+        [Verb("milk", HelpText = "Display Current Amount of Milk or Add Milk to the basket")]
+        private class MilkCommand : ICommand
         {
             [Option('c', "count", Required = false, HelpText = "How Much Milk to Add")]
             public int Count { get; set; }
             public void Execute()
             {
-                if (Count > 0)
+                if (Count != 0)
                 {
                     _basket.AddMilk(Count);
-                    Console.WriteLine("Current Milk Count: " + _basket.Milk);
                 }
-                else
-                {
-                    Console.WriteLine("Current Milk Count: " + _basket.Milk);
-                }
+                Console.WriteLine("Current Milk Count: " + _basket.Milk);
             }
         }
     }
