@@ -11,9 +11,10 @@ namespace Henrys
 
         static void Main(string[] args)
         {
-
+            Console.WriteLine("Control-C to quit");
             while (true)
             {
+                Console.Write("Enter Command: ");
                 args = Console.ReadLine()?.Split(" ");
                 //ParserResult<ICommand> parserResult =
                 Parser.Default.ParseArguments<CostCommand, ApplesCommand, BreadCommand, SoupCommand, BreadCommand, DateCommand>(args)
@@ -30,13 +31,20 @@ namespace Henrys
             [Verb("date", HelpText = "Display or set the basket sale date")]
         public class DateCommand : ICommand
         {
-         [Option('s',"date", HelpText = "Set the sale date of the basket")]
+            [Option('s',"date", HelpText = "Set the sale date of the basket")]
             public String Date { get; set; }
+
+            [Option('c',"count", HelpText = "Add or subtract days from the sale date")]
+            public int? Count { get; set; }
             public void Execute()
             {
+                if (Count != null)
+                {
+                  _basket.DateOfSale = _basket.DateOfSale.AddDays((int) Count);
+                }
                 if (string.IsNullOrEmpty(Date))
                 {
-                    Console.WriteLine();
+                    Console.WriteLine("Sale Date: " + _basket.DateOfSale);
                 }
                 else
                 {
@@ -44,12 +52,15 @@ namespace Henrys
                     {
                         var date = DateTime.Parse(Date);
                         _basket.DateOfSale = date.Date;
+                        Console.WriteLine("Sale Date: " + _basket.DateOfSale);
+                    
                     }
                     catch (Exception e)
                     {
                         Console.WriteLine("Invalid sale date");
                     }
                 }
+
             }
         }
 
@@ -73,11 +84,11 @@ namespace Henrys
                 if (Count > 0)
                 {
                     _basket.AddApples(Count);
-                    Console.WriteLine(_basket.Apples);
+                    Console.WriteLine("Current Apple Count: " + _basket.Apples);
                 }
                 else
                 {
-                   Console.WriteLine(_basket.Apples);
+                   Console.WriteLine("Current Apple Count: " + _basket.Apples);
                 }
             }
         }
@@ -92,11 +103,11 @@ namespace Henrys
                 if (Count > 0)
                 {
                     _basket.AddBread(Count);
-                    Console.WriteLine(_basket.Bread);
+                    Console.WriteLine("Current Bread Count: " + _basket.Bread);
                 }
                 else
                 {
-                    Console.WriteLine(_basket.Bread);
+                    Console.WriteLine("Current Bread Count: " + _basket.Bread);
                 }
             }
         }
@@ -111,11 +122,11 @@ namespace Henrys
                 if (Count > 0)
                 {
                     _basket.AddSoup(Count);
-                    Console.WriteLine(_basket.Soup);
+                    Console.WriteLine("Current Soup Count: " + _basket.Soup);
                 }
                 else
                 {
-                    Console.WriteLine(_basket.Soup);
+                    Console.WriteLine("Current Soup Count: " + _basket.Soup);
                 }
             }
         }
@@ -130,11 +141,11 @@ namespace Henrys
                 if (Count > 0)
                 {
                     _basket.AddMilk(Count);
-                    Console.WriteLine(_basket.Milk);
+                    Console.WriteLine("Current Milk Count: " + _basket.Milk);
                 }
                 else
                 {
-                    Console.WriteLine(_basket.Milk);
+                    Console.WriteLine("Current Milk Count: " + _basket.Milk);
                 }
             }
         }
