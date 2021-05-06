@@ -43,7 +43,7 @@ namespace HenrysTests
             basket.DateOfSale = date;
             basket.AddSoup(2);
             basket.AddBread(1);
-            Assert.AreEqual(1.70M, basket.Cost);
+            Assert.AreEqual(1.70M, basket.BasketCost);
         }
 
 
@@ -53,7 +53,7 @@ namespace HenrysTests
             basket.DateOfSale = date;
             basket.AddSoup(2);
             basket.AddBread(1);
-            Assert.AreEqual(2.10M, basket.Cost);
+            Assert.AreEqual(2.10M, basket.BasketCost);
         }
 
         [TestCaseSource(nameof(_allCases))]
@@ -61,7 +61,7 @@ namespace HenrysTests
         {
             basket.DateOfSale = date;
             basket.AddSoup(2);
-            Assert.AreEqual(1.30M, basket.Cost);
+            Assert.AreEqual(1.30M, basket.BasketCost);
         }
 
 
@@ -70,7 +70,7 @@ namespace HenrysTests
         {
             basket.DateOfSale = date;
             basket.AddBread(2);
-            Assert.AreEqual(1.60M, basket.Cost);
+            Assert.AreEqual(1.60M, basket.BasketCost);
         }
     }
 

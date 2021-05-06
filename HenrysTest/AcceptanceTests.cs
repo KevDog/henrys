@@ -20,7 +20,7 @@ namespace HenrysTests
         {
             _basket.AddSoup(3);
             _basket.AddBread(2);
-            Assert.AreEqual(3.15M,_basket.Cost);
+            Assert.AreEqual(3.15M,_basket.BasketCost);
         }
 
         [Test]
@@ -28,7 +28,7 @@ namespace HenrysTests
         {
             _basket.AddApples(6);
             _basket.AddMilk(1);
-            Assert.AreEqual(1.90M,_basket.Cost);
+            Assert.AreEqual(1.90M,_basket.BasketCost);
         }
 
         [Test]
@@ -37,16 +37,17 @@ namespace HenrysTests
             _basket.DateOfSale = _fiveDaysFromNow;
             _basket.AddApples(6);
             _basket.AddMilk(1);
-            Assert.AreEqual(1.84M, _basket.Cost);
+            Assert.AreEqual(1.84M, _basket.BasketCost);
         }
 
         [Test]
         public void ThreeApplesAndTwoTinsOfSoupBoughtInFiveDaysTime()
         {
             _basket.DateOfSale = _fiveDaysFromNow;
-            _basket.AddApples(6);
-            _basket.AddMilk(1);
-            Assert.AreEqual(1.84M, _basket.Cost);
+            _basket.AddApples(3);
+            _basket.AddSoup(2);
+            _basket.AddBread(1);
+            Assert.AreEqual(1.97M, _basket.BasketCost);
         }
-    }
+    } 
 }

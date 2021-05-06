@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Input;
 using CommandLine;
 using HenrysLib;
 
@@ -7,7 +6,7 @@ namespace Henrys
 {
     internal class Program
     {
-        private static Basket _basket = new Basket();
+        private static readonly Basket Basket = new();
 
         private static void Main(string[] args)
         {
@@ -27,7 +26,7 @@ namespace Henrys
         }
 
         [Verb("date", HelpText = "Display or set the basket sale date")]
-        public class DateCommand : ICommand
+        private class DateCommand : ICommand
         {
             [Option('s',"date", HelpText = "Set the sale date of the basket")]
             public string Date { get; set; }
@@ -38,19 +37,19 @@ namespace Henrys
             {
                 if (Count != 0)
                 {
-                  _basket.DateOfSale = _basket.DateOfSale.AddDays(Count);
+                  Basket.DateOfSale = Basket.DateOfSale.AddDays(Count);
                 }
                 if (string.IsNullOrEmpty(Date))
                 {
-                    Console.WriteLine("Sale Date: " + _basket.DateOfSale);
+                    Console.WriteLine("Sale Date: " + Basket.DateOfSale);
                 }
                 else
                 {
                     try
                     {
                         var date = DateTime.Parse(Date);
-                        _basket.DateOfSale = date.Date;
-                        Console.WriteLine("Sale Date: " + _basket.DateOfSale);
+                        Basket.DateOfSale = date.Date;
+                        Console.WriteLine("Sale Date: " + Basket.DateOfSale);
                     
                     }
                     catch (Exception e)
@@ -66,7 +65,7 @@ namespace Henrys
         {
             public void Execute()
             {
-                Console.WriteLine("Current Basket Cost: " + _basket.Cost);
+                Console.WriteLine("Current Basket Cost: " + Basket.BasketCost);
             }
         }
 
@@ -79,9 +78,9 @@ namespace Henrys
             {
                 if (Count != 0)
                 {
-                    _basket.AddApples(Count);
+                    Basket.AddApples(Count);
                 }
-                Console.WriteLine("Current Apple Count: " + _basket.Apples);
+                Console.WriteLine("Current Apple Count: " + Basket.Apples);
             }
         }
 
@@ -94,9 +93,9 @@ namespace Henrys
             {
                 if (Count != 0)
                 {
-                    _basket.AddBread(Count);
+                    Basket.AddBread(Count);
                 }
-                Console.WriteLine("Current Bread Count: " + _basket.Bread);
+                Console.WriteLine("Current Bread Count: " + Basket.Bread);
             }
         }
 
@@ -109,9 +108,9 @@ namespace Henrys
             {
                 if (Count != 0)
                 {
-                    _basket.AddSoup(Count);
+                    Basket.AddSoup(Count);
                 }
-                Console.WriteLine("Current Soup Count: " + _basket.Soup);
+                Console.WriteLine("Current Soup Count: " + Basket.Soup);
             }
         }
 
@@ -124,9 +123,18 @@ namespace Henrys
             {
                 if (Count != 0)
                 {
-                    _basket.AddMilk(Count);
+                    Basket.AddMilk(Count);
                 }
-                Console.WriteLine("Current Milk Count: " + _basket.Milk);
+                Console.WriteLine("Current Milk Count: " + Basket.Milk);
+            }
+        }
+
+        [Verb("tests", HelpText = "Run Acceptance Tests and Display Results")]
+        private class TestsCommand : ICommand
+        {
+            public void Execute()
+            {
+
             }
         }
     }

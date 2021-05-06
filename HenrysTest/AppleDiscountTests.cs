@@ -44,7 +44,7 @@ namespace HenrysTests
                 _basket.AddApples(10);
                 _basket.DateOfSale = date;
                 Assert.True(_basket.AppleDateRangeApplies());
-                Assert.AreEqual(0.9M,_basket.Cost);
+                Assert.AreEqual(0.9M,_basket.BasketCost);
             }
         }
 
@@ -53,10 +53,10 @@ namespace HenrysTests
         {
             _basket.DateOfSale = date;
             _basket.AddApples(10);
-            Assert.AreEqual(1.0M, _basket.Cost);
+            Assert.AreEqual(1.0M, _basket.BasketCost);
         }
 
-        private IEnumerable<DateTime> EachDay(DateTime from, DateTime thru)
+        private static IEnumerable<DateTime> EachDay(DateTime from, DateTime thru)
         {
             for (var day = from.Date; day.Date <= thru.Date; day = day.AddDays(1))
                 yield return day;

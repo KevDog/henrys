@@ -15,36 +15,34 @@ namespace HenrysTests
         }
 
         [Test]
-        public void CannotTakeOutMoreApplesThanWerePutIn()
+       
+        public void CanOnlyAddItemsThatExistInStore()
         {
-            _basket.AddApples(10);
-            _basket.AddApples(-11);
+          var ex = Assert.Throws<NullReferenceException>(() => _basket.AddToBasket("Cookies", 1));
+          Assert.AreEqual("Can only add inventory items to basket", ex.Data["Henrys"]);
+        }
+
+
+        [Test]
+        public void CannotTakeOutMoreItemsThanWerePutIn()
+        {
+            var adding = 10;
+            var subtracting = -11;
+
+            _basket.AddApples(adding);
+            _basket.AddApples(subtracting);
             Assert.AreEqual(0,_basket.Apples);
-        }
 
-
-        [Test]
-        public void CannotTakeOutMoreMilkThanWerePutIn()
-        {
-            _basket.AddMilk(10);
-            _basket.AddMilk(-11);
+            _basket.AddMilk(adding);
+            _basket.AddMilk(subtracting);
             Assert.AreEqual(0, _basket.Milk);
-        }
-
-
-        [Test]
-        public void CannotTakeOutMoreSoupThanWerePutIn()
-        {
-            _basket.AddSoup(10);
-            _basket.AddSoup(-11);
+        
+            _basket.AddSoup(adding);
+            _basket.AddSoup(subtracting);
             Assert.AreEqual(0, _basket.Soup);
-        }
 
-        [Test]
-        public void CannotTakeOutMoreBreadThanWerePutIn()
-        {
-            _basket.AddBread(10);
-            _basket.AddBread(-11);
+            _basket.AddBread(adding);
+            _basket.AddBread(subtracting);
             Assert.AreEqual(0, _basket.Bread);
         }
 
@@ -62,34 +60,18 @@ namespace HenrysTests
             Assert.AreEqual(new DateTime(2021, 1, 1), _basket.DateOfSale);
         }
 
-        [Test]
-        public void AddingApplesToBasketProducesCorrectPrice()
-        {
-            _basket.AddApples(2);
-            Assert.AreEqual(0.20, _basket.Cost);
-        }
 
-        [Test]
-        public void ABasketWithOneMilkHasCorrectPrice()
-        {
-            _basket.AddMilk(2);
-            Assert.AreEqual(2.60, _basket.Cost);
-        }
 
-        [Test]
-        public void ABasketWithOneCanOfSoupHasCorrectPrice()
+        [TestCase("Apples", 2, 0.20)]
+        [TestCase("Milk",   2, 2.60)]
+        [TestCase("Soup",   2, 1.30)]
+        [TestCase("Bread", 2, 1.60)]
+        public void AddingApplesToBasketProducesCorrectPrice(string item, int count, decimal expectedCost)
         {
-            _basket.AddSoup(2);
-            Assert.AreEqual(1.30, _basket.Cost);
+            _basket.AddToBasket(item,count);
+            Assert.AreEqual(expectedCost, _basket.BasketCost);
         }
-
-        [Test]
-        public void ABasketWithOneLoafOfBreadHasCorrectPrice()
-        {
-            _basket.AddBread(2);
-            Assert.AreEqual(1.60, _basket.Cost);
-        }
-
+        
         [Test]
         public void ABasketWithOneOfEachItemHasCorrectPrice()
         {
@@ -97,7 +79,7 @@ namespace HenrysTests
             _basket.AddApples(1);
             _basket.AddMilk(1);
             _basket.AddSoup(1);
-            Assert.AreEqual(2.85, _basket.Cost);
+            Assert.AreEqual(2.85, _basket.BasketCost);
         }
     }
 }
