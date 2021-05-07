@@ -18,16 +18,16 @@ namespace HenrysTests
         [Test]
         public void ThreeTinsOfSoupAndTwoLoavesOfBreadBoughtToday()
         {
-            _basket.AddSoup(3);
-            _basket.AddBread(2);
+            _basket.AddToBasket("Soup",3);
+            _basket.AddToBasket("Bread",2);
             Assert.AreEqual(3.15M,_basket.BasketCost);
         }
 
         [Test]
         public void SixApplesAndABottleOfMilkBoughtToday()
         {
-            _basket.AddApples(6);
-            _basket.AddMilk(1);
+            _basket.AddToBasket("Apples",6);
+            _basket.AddToBasket("Milk",1);
             Assert.AreEqual(1.90M,_basket.BasketCost);
         }
 
@@ -35,8 +35,8 @@ namespace HenrysTests
         public void SixApplesAndABottleOfMilkBoughtInFiveDaysTime()
         {
             _basket.DateOfSale = _fiveDaysFromNow;
-            _basket.AddApples(6);
-            _basket.AddMilk(1);
+            _basket.AddToBasket("Apples",6);
+            _basket.AddToBasket("Milk",1);
             Assert.AreEqual(1.84M, _basket.BasketCost);
         }
 
@@ -44,9 +44,9 @@ namespace HenrysTests
         public void ThreeApplesAndTwoTinsOfSoupBoughtInFiveDaysTime()
         {
             _basket.DateOfSale = _fiveDaysFromNow;
-            _basket.AddApples(3);
-            _basket.AddSoup(2);
-            _basket.AddBread(1);
+            _basket.AddToBasket("Apples",3);
+            _basket.AddToBasket("Soup",2);
+            _basket.AddToBasket("Bread",1);
             Assert.AreEqual(1.97M, _basket.BasketCost);
         }
     } 

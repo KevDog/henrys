@@ -9,11 +9,11 @@ namespace HenrysTests
     public class AppleDiscountTests
     {
         private Basket _basket;
-        private static DateTime _nextMonth = DateTimeFormatInfo.CurrentInfo.Calendar.AddMonths(DateTime.Now, 1);
-        private static int _daysInThisMonth = DateTimeFormatInfo.CurrentInfo.Calendar.GetDaysInMonth(_nextMonth.Year, _nextMonth.Month);
-        private static DateTime _lastDayOfNextMonth = new(_nextMonth.Year, _nextMonth.Month, _daysInThisMonth);
-        private static DateTime _firstDayOfMonthAfterNext = _lastDayOfNextMonth.AddDays(1);
-        private static DateTime _threeDaysFromNow = DateTime.Today.AddDays(3);
+        private static readonly DateTime NextMonth = DateTimeFormatInfo.CurrentInfo.Calendar.AddMonths(DateTime.Now, 1);
+        private static readonly int DaysInThisMonth = DateTimeFormatInfo.CurrentInfo.Calendar.GetDaysInMonth(NextMonth.Year, NextMonth.Month);
+        private static readonly DateTime LastDayOfNextMonth = new(NextMonth.Year, NextMonth.Month, DaysInThisMonth);
+        private static readonly DateTime FirstDayOfMonthAfterNext = LastDayOfNextMonth.AddDays(1);
+        private static readonly DateTime ThreeDaysFromNow = DateTime.Today.AddDays(3);
 
         [SetUp]
         public void Setup()
@@ -21,38 +21,32 @@ namespace HenrysTests
             _basket = new Basket();
         }
 
-        private static DateTime[] _discountDates =
-        {
-            _threeDaysFromNow,
-            _lastDayOfNextMonth
-        };
-
-        private static DateTime[] _nonDiscountDates =
+        private static readonly DateTime[] NonDiscountDates =
         {
             DateTime.Today, 
             DateTime.Today.AddDays(2),
             DateTime.Today.AddDays(-1),
-            _firstDayOfMonthAfterNext
+            FirstDayOfMonthAfterNext
         };
 
         [Test]
         public void DateRangeForDiscountDatesReturnsTrue()
         {
-            foreach (var date in EachDay(_threeDaysFromNow, _lastDayOfNextMonth))
+            foreach (var date in EachDay(ThreeDaysFromNow, LastDayOfNextMonth))
             {
                 _basket = new Basket(date);
-                _basket.AddApples(10);
+                _basket.AddToBasket("Apples",10);
                 _basket.DateOfSale = date;
                 Assert.True(_basket.AppleDateRangeApplies());
                 Assert.AreEqual(0.9M,_basket.BasketCost);
             }
         }
 
-        [TestCaseSource(nameof(_nonDiscountDates))]
+        [TestCaseSource(nameof(NonDiscountDates))]
         public void DateRangeForNonDiscountDatesReturnsFalse(DateTime date)
         {
             _basket.DateOfSale = date;
-            _basket.AddApples(10);
+            _basket.AddToBasket("Apples",10);
             Assert.AreEqual(1.0M, _basket.BasketCost);
         }
 
@@ -61,6 +55,5 @@ namespace HenrysTests
             for (var day = from.Date; day.Date <= thru.Date; day = day.AddDays(1))
                 yield return day;
         }
-     
     }
 }

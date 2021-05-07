@@ -1,5 +1,7 @@
 ﻿using System;
-using System.Reflection;
+//using System.Reflection;
+using System.Globalization;
+using System.Text;
 using static System.Globalization.DateTimeFormatInfo;
 
 namespace HenrysLib
@@ -37,34 +39,14 @@ namespace HenrysLib
 
         public DateTime DateOfSale { get; set; }
 
-        public void AddSoup(int count)
-        {
-           AddToBasket("Soup",count);
-        }
-
-        public void AddBread(int count)
-        {
-            AddToBasket("Bread",count);
-        }
-
-        public void AddMilk(int count)
-        {
-           AddToBasket("Milk", count);
-        }
-
-        public void AddApples(int count)
-        {
-            AddToBasket("Apples",count);
-        }
-
         public void AddToBasket(string prop, int count )
         {
+            prop = ToTitleCase(prop);
             try
             {
                 var property = GetType().GetProperty(prop);
-           
-
-                var current =(int) GetType().GetProperty(prop).GetValue(this);
+                
+                var current =(int) property.GetValue(this);
                 var sum = count + current;
                 if (sum < 0)
                 {
@@ -80,8 +62,13 @@ namespace HenrysLib
                 e.Data.Add("Henrys","Can only add inventory items to basket");
                 throw;
             }
-            
         }
+
+        public static string ToTitleCase(string text)
+        {
+            return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(text.ToLower());
+        }
+
         public decimal BasketCost => Math.Round(CalculateBasketCost(),2);
 
         private decimal CalculateBasketCost()
@@ -95,21 +82,17 @@ namespace HenrysLib
 
         private decimal ApplyAppleDiscount()
         {
-            if (AppleDateRangeApplies())
-            {
-                var discountedPrice = decimal.Multiply(ApplePrice, 0.9M);
-                return decimal.Multiply(Apples, discountedPrice);
-            }
-            return decimal.Multiply(Apples, ApplePrice);
+            if (!AppleDateRangeApplies()) return decimal.Multiply(Apples, ApplePrice);
+            
+            var discountedPrice = decimal.Multiply(ApplePrice, 0.9M);
+            return decimal.Multiply(Apples, discountedPrice);
         }
 
         private decimal ApplySoupDiscount()
         {
-            if (SoupDiscountApplies())
-            {
-                return HalfLoafOfBread;
-            }
-            return 0.0M;
+            if (!SoupDiscountApplies()) return 0.0M;
+            
+            return HalfLoafOfBread;
         }
 
         public bool AppleDateRangeApplies()
@@ -130,6 +113,36 @@ namespace HenrysLib
         private bool SoupDateRangeApplies()
         {
             return DateOfSale.Date > DateTime.Today.AddDays(-2) && DateOfSale.Date < DateTime.Today.AddDays(8);
+        }
+
+        public override string ToString()
+        {
+            var builder = new StringBuilder();
+            //This may seem a little over-complicated for a ToString method; however, it
+            //provides the formatting to look good for the CLI. We pick out the compound
+            //words and add spaces. For the goods, we set tabs as required. 
+            foreach (var propertyInfo in GetType().GetProperties())
+            {
+                var type = propertyInfo.PropertyType;
+                switch (true)
+                {
+                    case bool _ when type == typeof(DateTime):
+                        var saleDate = (DateTime) propertyInfo.GetValue(this);
+                        builder.AppendLine("Sale Date: \t" + saleDate.ToShortDateString());
+                        break;
+                    case bool _ when propertyInfo.Name == "BasketCost":
+                        builder.AppendLine("Basket Cost: \t" + BasketCost);
+                        break;
+                    
+                    default:
+                        if(propertyInfo.Name.Length > 5)
+                            builder.AppendLine(propertyInfo.Name + ": \t" + propertyInfo.GetValue(this));
+                        else
+                            builder.AppendLine(propertyInfo.Name + ": \t\t" + propertyInfo.GetValue(this) );
+                        break;
+                }
+            }
+            return builder.ToString();
         }
     }
 }

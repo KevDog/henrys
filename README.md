@@ -57,18 +57,12 @@ All outputs must print to the command line.
   - Expected total cost = 1.97.
   
 ### Commands
-cost       Display the current cost of the basket
+  status     Display the current status
 
-apples     Display Current Amount of Apples or Add Apples to the basket
+  add        Add or remove items from the basket
 
-bread      Display Current Amount of Bread or Add Bread to the basket
+  date       Set the basket sale date
 
-soup       Display Current Amount of Soup or Add Soup to the basket
+  help       Display more information on a specific command.
 
-bread      Display Current Amount of Bread or Add Bread to the basket
-
-date       Display or set the basket sale date
-
-help       Display more information on a specific command.
-
-version    Display version information.
+  version    Display version information.

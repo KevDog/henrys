@@ -6,12 +6,12 @@ namespace HenrysTests
 {
     public class SoupDiscountTests
     {
-        private Basket basket;
+        private Basket _basket;
 
         [SetUp]
         public void Setup()
         {
-            basket = new Basket();
+            _basket = new Basket();
         }
 
         private static DateTime[] _discountCases =
@@ -40,39 +40,35 @@ namespace HenrysTests
         [TestCaseSource(nameof(_discountCases))]
         public void SoupDiscountAppliesOnAppropriateDays(DateTime date)
         {
-            basket.DateOfSale = date;
-            basket.AddSoup(2);
-            basket.AddBread(1);
-            Assert.AreEqual(1.70M, basket.BasketCost);
+            _basket.DateOfSale = date;
+            _basket.AddToBasket("Soup",2);
+            _basket.AddToBasket("Bread",1);
+            Assert.AreEqual(1.70M, _basket.BasketCost);
         }
-
 
         [TestCaseSource(nameof(_nonDiscountCases))]
         public void SoupDiscountNotAppliedOnAppropriateDays(DateTime date)
         {
-            basket.DateOfSale = date;
-            basket.AddSoup(2);
-            basket.AddBread(1);
-            Assert.AreEqual(2.10M, basket.BasketCost);
+            _basket.DateOfSale = date;
+            _basket.AddToBasket("Soup",2);
+            _basket.AddToBasket("Bread",1);
+            Assert.AreEqual(2.10M, _basket.BasketCost);
         }
 
         [TestCaseSource(nameof(_allCases))]
         public void BuyingTwoTinsOfSoupAndNoBreadGetsNoDiscount(DateTime date)
         {
-            basket.DateOfSale = date;
-            basket.AddSoup(2);
-            Assert.AreEqual(1.30M, basket.BasketCost);
+            _basket.DateOfSale = date;
+            _basket.AddToBasket("Soup",2);
+            Assert.AreEqual(1.30M, _basket.BasketCost);
         }
-
 
         [TestCaseSource(nameof(_allCases))]
         public void BuyingBreadGetsNoDiscount(DateTime date)
         {
-            basket.DateOfSale = date;
-            basket.AddBread(2);
-            Assert.AreEqual(1.60M, basket.BasketCost);
+            _basket.DateOfSale = date;
+            _basket.AddToBasket("Bread",2);
+            Assert.AreEqual(1.60M, _basket.BasketCost);
         }
     }
-
-
 }
