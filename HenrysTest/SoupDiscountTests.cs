@@ -14,21 +14,21 @@ namespace HenrysTests
             _basket = new Basket();
         }
 
-        private static DateTime[] _discountCases =
+        private static readonly DateTime[] DiscountCases =
         {
             DateTime.Today,
             DateTime.Today.AddDays(-1),
             DateTime.Today.AddDays(7),
         };
 
-        private static DateTime[] _nonDiscountCases =
+        private static readonly DateTime[] NonDiscountCases =
         {
             DateTime.Today.AddDays(-2),
             DateTime.Today.AddDays(8)
 
         };
 
-        private static DateTime[] _allCases =
+        private static readonly DateTime[] AllCases =
         {
             DateTime.Today.AddDays(-2),
             DateTime.Today.AddDays(8),
@@ -37,7 +37,7 @@ namespace HenrysTests
             DateTime.Today.AddDays(7),
         };
 
-        [TestCaseSource(nameof(_discountCases))]
+        [TestCaseSource(nameof(DiscountCases))]
         public void SoupDiscountAppliesOnAppropriateDays(DateTime date)
         {
             _basket.DateOfSale = date;
@@ -46,7 +46,7 @@ namespace HenrysTests
             Assert.AreEqual(1.70M, _basket.BasketCost);
         }
 
-        [TestCaseSource(nameof(_nonDiscountCases))]
+        [TestCaseSource(nameof(NonDiscountCases))]
         public void SoupDiscountNotAppliedOnAppropriateDays(DateTime date)
         {
             _basket.DateOfSale = date;
@@ -55,7 +55,7 @@ namespace HenrysTests
             Assert.AreEqual(2.10M, _basket.BasketCost);
         }
 
-        [TestCaseSource(nameof(_allCases))]
+        [TestCaseSource(nameof(AllCases))]
         public void BuyingTwoTinsOfSoupAndNoBreadGetsNoDiscount(DateTime date)
         {
             _basket.DateOfSale = date;
@@ -63,7 +63,7 @@ namespace HenrysTests
             Assert.AreEqual(1.30M, _basket.BasketCost);
         }
 
-        [TestCaseSource(nameof(_allCases))]
+        [TestCaseSource(nameof(AllCases))]
         public void BuyingBreadGetsNoDiscount(DateTime date)
         {
             _basket.DateOfSale = date;
